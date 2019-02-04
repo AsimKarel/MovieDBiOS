@@ -22,27 +22,27 @@
                                 <rect key="frame" x="0.0" y="160" width="375" height="507"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dpL-Pv-uOH">
-                                    <size key="itemSize" width="158" height="139"/>
+                                    <size key="itemSize" width="107" height="179"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="movieCell" id="iwy-oL-euX" customClass="MovieCollectionViewCell" customModule="MoviewDBTask" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="158" height="139"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="107" height="179"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="158" height="139"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="107" height="179"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aC5-Sy-snp">
-                                                    <rect key="frame" x="10" y="107" width="138" height="21"/>
+                                                    <rect key="frame" x="10" y="147" width="87" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IPd-Xj-EPC">
-                                                    <rect key="frame" x="2" y="2" width="154" height="97.5"/>
+                                                    <rect key="frame" x="2" y="2" width="103" height="125.5"/>
                                                 </imageView>
                                             </subviews>
                                         </view>
@@ -67,11 +67,14 @@
                                 </connections>
                             </collectionView>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="cOb-UY-lFg">
-                                <rect key="frame" x="0.0" y="70" width="375" height="50"/>
+                                <rect key="frame" x="35" y="70" width="340" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="tbR-gl-ht5"/>
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Zfc-Iv-Kal"/>
+                                </connections>
                             </searchBar>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BhZ-rw-TDd">
                                 <rect key="frame" x="0.0" y="20" width="375" height="50"/>
@@ -82,15 +85,25 @@
                                     <navigationItem title="Title" id="FQk-K3-98K"/>
                                 </items>
                             </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pb9-C7-nsg">
+                                <rect key="frame" x="0.0" y="82.5" width="35" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="N4m-cD-jTW"/>
+                                </constraints>
+                                <state key="normal" image="sort.png"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="pb9-C7-nsg" firstAttribute="centerY" secondItem="cOb-UY-lFg" secondAttribute="centerY" id="183-fB-tJl"/>
                             <constraint firstItem="BhZ-rw-TDd" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="1h0-V1-gnn"/>
+                            <constraint firstItem="pb9-C7-nsg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="8I9-uV-eNY"/>
                             <constraint firstItem="BhZ-rw-TDd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="JM5-Ph-bRL"/>
+                            <constraint firstItem="cOb-UY-lFg" firstAttribute="leading" secondItem="pb9-C7-nsg" secondAttribute="trailing" id="SrW-PT-MWy"/>
                             <constraint firstItem="7gE-OH-0ch" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="ZMU-BW-1r9"/>
                             <constraint firstItem="7gE-OH-0ch" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bBV-Jn-6JC"/>
                             <constraint firstItem="cOb-UY-lFg" firstAttribute="top" secondItem="BhZ-rw-TDd" secondAttribute="bottom" id="clx-T9-hd1"/>
-                            <constraint firstItem="cOb-UY-lFg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="jXp-9K-Ol7"/>
+                            <constraint firstItem="cOb-UY-lFg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="35" id="jXp-9K-Ol7"/>
                             <constraint firstItem="BhZ-rw-TDd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="keq-Pl-dby"/>
                             <constraint firstItem="7gE-OH-0ch" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="lzw-4q-bzf"/>
                             <constraint firstItem="cOb-UY-lFg" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="qcc-lk-vOb"/>
@@ -182,4 +195,7 @@
             <point key="canvasLocation" x="1020" y="133.5832083958021"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="sort.png" width="64" height="64"/>
+    </resources>
 </document>

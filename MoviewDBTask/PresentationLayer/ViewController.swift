@@ -8,7 +8,7 @@
 
 import UIKit
 import Alamofire
-class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
     
     var movies:[Movie]!
     var page:Int!;
@@ -57,6 +57,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
     }
     
+    
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true;
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false;
+        searchBar.text = "";
+        searchBar.endEditing(true);
+    }
     
     
     public func getMovies(){
