@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Alamofire
 class DetailsViewController: UIViewController {
 
     
@@ -16,23 +16,32 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var detailsLabel: UILabel!
-    
+    var id:Int64!;
+    var movie:Movie!;
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        getMovieDetails();
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setValues() {
+        dateLabel.text = movie.releaseDate;
+        nameLabel.text = movie.title;
+        ratingLabel.text = movie.ratings.description;
+        detailsLabel.text = movie.plotSynopsis;
     }
-    */
+
+    public func getMovieDetails(){
+        var params:Parameters = Parameters();
+        params["id"] = id!;
+        func getListSuccess(response:APIResponse){
+            movie = Movie(dictionary: (response.data as! NSDictionary));
+        }
+        func getListFailure(response:APIResponse){
+            
+        }
+        NetworkService.sharedInstance().getAPI(route: "", parameters: params, success_callback: getListSuccess, failure_callback: getListFailure)
+    }
 
 }

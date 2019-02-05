@@ -19,40 +19,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7gE-OH-0ch">
-                                <rect key="frame" x="0.0" y="160" width="375" height="507"/>
+                                <rect key="frame" x="10" y="160" width="355" height="507"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dpL-Pv-uOH">
-                                    <size key="itemSize" width="107" height="179"/>
+                                    <size key="itemSize" width="142" height="179"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="movieCell" id="iwy-oL-euX" customClass="MovieCollectionViewCell" customModule="MoviewDBTask" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="107" height="179"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="142" height="179"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="107" height="179"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="142" height="179"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aC5-Sy-snp">
-                                                    <rect key="frame" x="10" y="147" width="87" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aC5-Sy-snp">
+                                                    <rect key="frame" x="10" y="130.5" width="122" height="41.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IPd-Xj-EPC">
-                                                    <rect key="frame" x="2" y="2" width="103" height="125.5"/>
+                                                    <rect key="frame" x="2" y="2" width="138" height="125.5"/>
                                                 </imageView>
                                             </subviews>
                                         </view>
                                         <constraints>
                                             <constraint firstItem="IPd-Xj-EPC" firstAttribute="height" secondItem="iwy-oL-euX" secondAttribute="height" multiplier="0.7" id="0o6-Mh-tyb"/>
                                             <constraint firstItem="IPd-Xj-EPC" firstAttribute="top" secondItem="iwy-oL-euX" secondAttribute="top" constant="2" id="K4c-kc-UuS"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="aC5-Sy-snp" secondAttribute="trailing" constant="2" id="Olw-Im-xZa"/>
-                                            <constraint firstItem="aC5-Sy-snp" firstAttribute="leading" secondItem="iwy-oL-euX" secondAttribute="leadingMargin" constant="2" id="d3s-Is-xtX"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="aC5-Sy-snp" secondAttribute="bottom" constant="3" id="fcS-K5-RzZ"/>
+                                            <constraint firstItem="aC5-Sy-snp" firstAttribute="leading" secondItem="iwy-oL-euX" secondAttribute="leadingMargin" constant="2" id="LCC-LG-dhC"/>
+                                            <constraint firstItem="aC5-Sy-snp" firstAttribute="bottom" secondItem="iwy-oL-euX" secondAttribute="bottomMargin" constant="1" id="SMa-n6-wGW"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="aC5-Sy-snp" secondAttribute="trailing" constant="2" id="eyK-BI-IC2"/>
                                             <constraint firstItem="IPd-Xj-EPC" firstAttribute="leading" secondItem="iwy-oL-euX" secondAttribute="leading" constant="2" id="pma-BE-VBz"/>
+                                            <constraint firstItem="aC5-Sy-snp" firstAttribute="top" secondItem="IPd-Xj-EPC" secondAttribute="bottom" constant="3" id="u4J-OQ-aOS"/>
                                             <constraint firstAttribute="trailing" secondItem="IPd-Xj-EPC" secondAttribute="trailing" constant="2" id="vuD-y5-cxh"/>
                                         </constraints>
                                         <connections>
@@ -101,11 +102,11 @@
                             <constraint firstItem="BhZ-rw-TDd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="JM5-Ph-bRL"/>
                             <constraint firstItem="cOb-UY-lFg" firstAttribute="leading" secondItem="pb9-C7-nsg" secondAttribute="trailing" id="SrW-PT-MWy"/>
                             <constraint firstItem="7gE-OH-0ch" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="ZMU-BW-1r9"/>
-                            <constraint firstItem="7gE-OH-0ch" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bBV-Jn-6JC"/>
+                            <constraint firstItem="7gE-OH-0ch" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="bBV-Jn-6JC"/>
                             <constraint firstItem="cOb-UY-lFg" firstAttribute="top" secondItem="BhZ-rw-TDd" secondAttribute="bottom" id="clx-T9-hd1"/>
                             <constraint firstItem="cOb-UY-lFg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="35" id="jXp-9K-Ol7"/>
                             <constraint firstItem="BhZ-rw-TDd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="keq-Pl-dby"/>
-                            <constraint firstItem="7gE-OH-0ch" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="lzw-4q-bzf"/>
+                            <constraint firstItem="7gE-OH-0ch" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-10" id="lzw-4q-bzf"/>
                             <constraint firstItem="cOb-UY-lFg" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="qcc-lk-vOb"/>
                             <constraint firstItem="7gE-OH-0ch" firstAttribute="top" secondItem="cOb-UY-lFg" secondAttribute="bottom" constant="40" id="qys-g8-O9T"/>
                         </constraints>

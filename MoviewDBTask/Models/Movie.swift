@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 class Movie: NSObject {
+    var id:Int64!;
     var title:String!;
     var thumbnail:UIImage!;
     var posterPath:String!;
@@ -21,6 +22,9 @@ class Movie: NSObject {
     }
     
     init(dictionary dict:NSDictionary) {
+        if dict["id"] != nil {
+            id = dict["id"] as? Int64;
+        }
         if dict["title"] != nil {
             title = dict["title"] as? String;
         }

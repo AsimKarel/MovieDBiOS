@@ -13,6 +13,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var movies:[Movie]!
     var page:Int!;
     var params:Parameters!;
+    var selectedMovieId:Int64!;
     @IBOutlet weak var moviesCollectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -36,11 +37,22 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             page = page + 1;
             getMovies();
         }
-        
-        
         return collectionCell;
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedMovieId = movies[indexPath.row].id;
+        self.performSegue(withIdentifier: "detailSegue", sender: self);
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "detailSegue"{
+            if let destination = segue.destination as? DetailsViewController{
+                destination.id = selectedMovieId;
+            }
+        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
