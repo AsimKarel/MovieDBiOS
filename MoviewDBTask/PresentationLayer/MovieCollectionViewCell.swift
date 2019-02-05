@@ -17,21 +17,20 @@ class MovieCollectionViewCell: UICollectionViewCell {
     public func setMovie(movie:Movie){
         
         nameLabel.text = movie.title;
-        if(MyFileManager.sharedInstance().fileExistsAtLocalDocumentDirectory(path: movie.posterPath!)){
-            self.posterUIImage.image = UIImage(contentsOfFile: MyFileManager.sharedInstance().getFilePathAtLocalDocumentDirectory(path: movie.posterPath!))
+        if movie.posterPath == nil{
+            self.posterUIImage?.image = UIImage(named: "no_image.png")
         }
         else{
-            self.downloadImages(name: movie.posterPath!) {
-                path in
-                self.posterUIImage?.image = UIImage(contentsOfFile: path)
+            if(MyFileManager.sharedInstance().fileExistsAtLocalDocumentDirectory(path: movie.posterPath!)){
+                self.posterUIImage.image = UIImage(contentsOfFile: MyFileManager.sharedInstance().getFilePathAtLocalDocumentDirectory(path: movie.posterPath!))
+            }
+            else{
+                self.downloadImages(name: movie.posterPath!) {
+                    path in
+                    self.posterUIImage?.image = UIImage(contentsOfFile: path)
+                }
             }
         }
-        
-        
-        
-        
-//        nameLabel.text = category.name; http://image.tmdb.org/t/p/w185/
-//        initialLabel.text = category.name.getInitialLetter();
     }
     
     

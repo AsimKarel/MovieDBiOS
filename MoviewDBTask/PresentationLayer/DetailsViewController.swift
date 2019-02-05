@@ -34,14 +34,14 @@ class DetailsViewController: UIViewController {
 
     public func getMovieDetails(){
         var params:Parameters = Parameters();
-        params["id"] = id!;
         func getListSuccess(response:APIResponse){
             movie = Movie(dictionary: (response.data as! NSDictionary));
+            setValues()
         }
         func getListFailure(response:APIResponse){
             
         }
-        NetworkService.sharedInstance().getAPI(route: "", parameters: params, success_callback: getListSuccess, failure_callback: getListFailure)
+        NetworkService.sharedInstance().getAPI(route: "https://api.themoviedb.org/3/movie/\(id!)", parameters: params, success_callback: getListSuccess, failure_callback: getListFailure)
     }
 
 }

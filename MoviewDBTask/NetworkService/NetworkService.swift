@@ -131,12 +131,12 @@ class NetworkService: NSObject {
     }
     
     public func buildURLWithParameters(url:String, parameters:Parameters) -> String{
-        var newUrl = "https://api.themoviedb.org/3/movie/top_rated?api_key=3a4882d7ba7b9f877d5ed0e680b67b07";
+        var newUrl = url;
+        newUrl = newUrl + "?api_key=3a4882d7ba7b9f877d5ed0e680b67b07"
         if parameters.count>0{
-            newUrl = newUrl + "&"
             parameters.forEach { (arg) in
                 let (key, value) = arg
-                newUrl = newUrl + key + "=" + (String(describing: value));
+                newUrl = newUrl + "&" + key + "=" + (String(describing: value));
             }
         }
         return newUrl;

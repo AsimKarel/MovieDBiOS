@@ -83,17 +83,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     public func getMovies(){
         params["page"] = page!;
-        func getListSuccess(response:APIResponse){
-            for movieDict in ((response.data as! NSDictionary)["results"] as! NSArray){
-                let newMovie = Movie(dictionary: movieDict as! NSDictionary);
-                movies.append(newMovie);
-            }
+        params["sort_by"] = "vote_average.desc";
+        func getListSuccess(response:[Movie]){
+            movies.append(contentsOf: response);
             moviesCollectionView.reloadData();
         }
         func getListFailure(response:APIResponse){
             
         }
-        NetworkService.sharedInstance().getAPI(route: "", parameters: params, success_callback: getListSuccess, failure_callback: getListFailure)
+        MovieBL().getMovieList(route: "https://api.themoviedb.org/3/discover/movie", params: params, success_callback: getListSuccess, failure_callback: getListFailure)
+        //NetworkService.sharedInstance().getAPI(route: "https://api.themoviedb.org/3/discover/movie", parameters: params, success_callback: getListSuccess, failure_callback: getListFailure)
     }
     
 }
