@@ -15,6 +15,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var params:Parameters!;
     var selectedMovieId:Int64!;
     @IBOutlet weak var moviesCollectionView: UICollectionView!
+    @IBOutlet weak var sortTypeSegmentControl: UISegmentedControl!
+    @IBOutlet weak var sortOrderSegmentControl: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +71,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
     }
     
+    @IBAction func sortTypeSelected(_ sender: Any) {
+        
+    }
+    
+    @IBAction func sortOrderSelected(_ sender: Any) {
+    }
     
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -79,6 +87,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         searchBar.text = "";
         searchBar.endEditing(true);
     }
+    
     
     
     public func getMovies(){
