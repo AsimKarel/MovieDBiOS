@@ -14,6 +14,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var page:Int!;
     var params:Parameters!;
     var selectedMovieId:Int64!;
+    var selectedSortType:String!;
+    var selectedSortOrder:String!;
     @IBOutlet weak var moviesCollectionView: UICollectionView!
     @IBOutlet weak var sortTypeSegmentControl: UISegmentedControl!
     @IBOutlet weak var sortOrderSegmentControl: UISegmentedControl!
@@ -23,6 +25,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         movies = [Movie]();
         params = Parameters();
         page = 1;
+        selectedSortType = "popularity";
+        selectedSortOrder = "asc";
         getMovies();
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -71,11 +75,34 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
     }
     
-    @IBAction func sortTypeSelected(_ sender: Any) {
-        
+    @IBAction func sortTypeSelected(_ sender: UISegmentedControl) {
+        movies = [Movie]();
+        switch sender.selectedSegmentIndex {
+        case 0:
+            selectedSortType = "popularity";
+            print(0);
+        case 1:
+            selectedSortType = "vote_average";
+            print(1);
+        default:
+            print()
+        }
+        getMovies();
     }
     
-    @IBAction func sortOrderSelected(_ sender: Any) {
+    @IBAction func sortOrderSelected(_ sender: UISegmentedControl) {
+        movies = [Movie]();
+        switch sender.selectedSegmentIndex {
+        case 0:
+            selectedSortOrder = "asc"
+            print(0);
+        case 1:
+            selectedSortOrder = "desc"
+            print(1);
+        default:
+            print()
+        }
+        getMovies();
     }
     
     
@@ -92,7 +119,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     public func getMovies(){
         params["page"] = page!;
-        params["sort_by"] = "vote_average.desc";
+        params["sort_by"] = "\(selectedSortType!).\(selectedSortOrder!)";
         func getListSuccess(response:[Movie]){
             movies.append(contentsOf: response);
             moviesCollectionView.reloadData();
@@ -101,7 +128,20 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             
         }
         MovieBL().getMovieList(route: "https://api.themoviedb.org/3/discover/movie", params: params, success_callback: getListSuccess, failure_callback: getListFailure)
-        //NetworkService.sharedInstance().getAPI(route: "https://api.themoviedb.org/3/discover/movie", parameters: params, success_callback: getListSuccess, failure_callback: getListFailure)
+    }
+    
+    public func getSearchedMovies(){
+        params["page"] = page!;
+        params["sort_by"] = "\(selectedSortType!).\(selectedSortOrder!)";
+        func getListSuccess(response:[Movie]){
+            movies.append(contentsOf: response);
+            moviesCollectionView.reloadData();
+        }
+        func getListFailure(response:APIResponse){
+            
+        }
+        MovieBL().getMovieList(route: "https://api.themoviedb.org/3/discover/movie", params: params, success_callback: getListSuccess, failure_callback: getListFailure)
+        //https://api.themoviedb.org/3/search/movie?api_key=3a4882d7ba7b9f877d5ed0e680b67b07&language=en-US&page=1&include_adult=false&query=dil
     }
     
 }
