@@ -12,7 +12,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     var movies:[Movie]!
     var page:Int!;
-    var params:Parameters!;
+    
     var selectedMovieId:Int64!;
     var selectedSortType:String!;
     var selectedSortOrder:String!;
@@ -23,7 +23,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     override func viewDidLoad() {
         super.viewDidLoad()
         movies = [Movie]();
-        params = Parameters();
+//        params = Parameters();
         page = 1;
         selectedSortType = "popularity";
         selectedSortOrder = "asc";
@@ -105,19 +105,50 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         getMovies();
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.view.endEditing(true);
+    }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = true;
     }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.count >= 3 {
+            movies = [Movie]();
+            getSearchedMovies(query: searchBar.text!);
+            hideFilters(hide: true)
+        }
+        else if searchText.count == 0{
+            movies = [Movie]();
+            getMovies();
+            hideFilters(hide: false)
+        }
+    }
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = false;
         searchBar.text = "";
         searchBar.endEditing(true);
+        hideFilters(hide: false)
+        movies = [Movie]();
+        getMovies();
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        hideFilters(hide: true)
+        self.view.endEditing(true);
+        movies = [Movie]();
+        getSearchedMovies(query: searchBar.text!);
     }
     
+    func hideFilters(hide:Bool){
+        sortTypeSegmentControl.isHidden = hide;
+        sortOrderSegmentControl.isHidden = hide;
+    }
     
     
     public func getMovies(){
+        var params:Parameters = Parameters();
         params["page"] = page!;
         params["sort_by"] = "\(selectedSortType!).\(selectedSortOrder!)";
         func getListSuccess(response:[Movie]){
@@ -130,9 +161,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         MovieBL().getMovieList(route: "https://api.themoviedb.org/3/discover/movie", params: params, success_callback: getListSuccess, failure_callback: getListFailure)
     }
     
-    public func getSearchedMovies(){
-        params["page"] = page!;
-        params["sort_by"] = "\(selectedSortType!).\(selectedSortOrder!)";
+    public func getSearchedMovies(query:String){
+        var params:Parameters = Parameters();
+        params["query"] = query.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil);
         func getListSuccess(response:[Movie]){
             movies.append(contentsOf: response);
             moviesCollectionView.reloadData();
@@ -140,8 +171,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         func getListFailure(response:APIResponse){
             
         }
-        MovieBL().getMovieList(route: "https://api.themoviedb.org/3/discover/movie", params: params, success_callback: getListSuccess, failure_callback: getListFailure)
-        //https://api.themoviedb.org/3/search/movie?api_key=3a4882d7ba7b9f877d5ed0e680b67b07&language=en-US&page=1&include_adult=false&query=dil
+        MovieBL().getMovieList(route: "https://api.themoviedb.org/3/search/movie", params: params, success_callback: getListSuccess, failure_callback: getListFailure)
     }
     
 }
