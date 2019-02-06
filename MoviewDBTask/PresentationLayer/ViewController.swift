@@ -19,10 +19,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var moviesCollectionView: UICollectionView!
     @IBOutlet weak var sortTypeSegmentControl: UISegmentedControl!
     @IBOutlet weak var sortOrderSegmentControl: UISegmentedControl!
+    @IBOutlet weak var loader: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         movies = [Movie]();
+        loader.stopAnimating();
 //        params = Parameters();
         page = 1;
         selectedSortType = "popularity";
@@ -148,28 +150,32 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     
     public func getMovies(){
+        loader.startAnimating();
         var params:Parameters = Parameters();
         params["page"] = page!;
         params["sort_by"] = "\(selectedSortType!).\(selectedSortOrder!)";
         func getListSuccess(response:[Movie]){
+            loader.stopAnimating();
             movies.append(contentsOf: response);
             moviesCollectionView.reloadData();
         }
         func getListFailure(response:APIResponse){
-            
+            loader.stopAnimating();
         }
         MovieBL().getMovieList(route: "https://api.themoviedb.org/3/discover/movie", params: params, success_callback: getListSuccess, failure_callback: getListFailure)
     }
     
     public func getSearchedMovies(query:String){
+        loader.startAnimating();
         var params:Parameters = Parameters();
         params["query"] = query.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil);
         func getListSuccess(response:[Movie]){
             movies.append(contentsOf: response);
             moviesCollectionView.reloadData();
+            loader.stopAnimating();
         }
         func getListFailure(response:APIResponse){
-            
+            loader.stopAnimating();
         }
         MovieBL().getMovieList(route: "https://api.themoviedb.org/3/search/movie", params: params, success_callback: getListSuccess, failure_callback: getListFailure)
     }

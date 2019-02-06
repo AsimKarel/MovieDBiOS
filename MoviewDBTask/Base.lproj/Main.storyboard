@@ -106,15 +106,24 @@
                                     <action selector="sortOrderSelected:" destination="BYZ-38-t0r" eventType="valueChanged" id="gCC-Of-GZN"/>
                                 </connections>
                             </segmentedControl>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="d95-co-nXa">
+                                <rect key="frame" x="150" y="306" width="75" height="75"/>
+                                <color key="backgroundColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="d95-co-nXa" secondAttribute="height" multiplier="1:1" id="r53-tG-nOg"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="BhZ-rw-TDd" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="1h0-V1-gnn"/>
                             <constraint firstItem="uBp-ET-305" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="5Cn-tw-0su"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zst-o7-ZYW" secondAttribute="trailing" constant="10" id="CVD-ss-qff"/>
+                            <constraint firstItem="d95-co-nXa" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="ECm-r3-9P5"/>
                             <constraint firstItem="BhZ-rw-TDd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="JM5-Ph-bRL"/>
                             <constraint firstItem="zst-o7-ZYW" firstAttribute="top" secondItem="cOb-UY-lFg" secondAttribute="bottom" constant="10" id="WrG-Ma-uyd"/>
                             <constraint firstItem="7gE-OH-0ch" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="ZMU-BW-1r9"/>
+                            <constraint firstItem="d95-co-nXa" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="aPw-UA-MdC"/>
                             <constraint firstItem="7gE-OH-0ch" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="bBV-Jn-6JC"/>
                             <constraint firstItem="cOb-UY-lFg" firstAttribute="top" secondItem="BhZ-rw-TDd" secondAttribute="bottom" id="clx-T9-hd1"/>
                             <constraint firstItem="uBp-ET-305" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.4" id="gkk-bT-3TH"/>
@@ -122,6 +131,7 @@
                             <constraint firstItem="cOb-UY-lFg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="jXp-9K-Ol7"/>
                             <constraint firstItem="BhZ-rw-TDd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="keq-Pl-dby"/>
                             <constraint firstItem="7gE-OH-0ch" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-10" id="lzw-4q-bzf"/>
+                            <constraint firstItem="d95-co-nXa" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.2" id="mSd-0t-vsG"/>
                             <constraint firstItem="cOb-UY-lFg" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="qcc-lk-vOb"/>
                             <constraint firstItem="7gE-OH-0ch" firstAttribute="top" secondItem="cOb-UY-lFg" secondAttribute="bottom" constant="50" id="qys-g8-O9T"/>
                             <constraint firstItem="zst-o7-ZYW" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.4" id="zs6-Hk-E0U"/>
@@ -129,6 +139,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="loader" destination="d95-co-nXa" id="nLy-RA-816"/>
                         <outlet property="moviesCollectionView" destination="7gE-OH-0ch" id="chw-j0-opz"/>
                         <outlet property="sortOrderSegmentControl" destination="zst-o7-ZYW" id="flh-m4-ERD"/>
                         <outlet property="sortTypeSegmentControl" destination="uBp-ET-305" id="HeC-0h-p1i"/>
