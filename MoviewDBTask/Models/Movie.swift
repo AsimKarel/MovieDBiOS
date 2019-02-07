@@ -14,7 +14,7 @@ class Movie: NSObject {
     var thumbnail:UIImage!;
     var posterPath:String!;
     var plotSynopsis:String!;
-    var ratings:Float!;
+    var ratings:String!;
     var releaseDate:String!;
     
     override init() {
@@ -36,9 +36,22 @@ class Movie: NSObject {
         }
         if dict["release_date"] != nil {
             releaseDate = dict["release_date"] as? String;
+            if releaseDate == ""
+            {
+                releaseDate = "Not available";
+            }
         }
+        else
+        {
+            releaseDate = "Not available";
+        }
+        
         if dict["vote_average"] != nil {
-            ratings = dict["vote_average"] as? Float;
+            ratings = String(describing: dict["vote_average"] as! NSNumber);
+        }
+        else
+        {
+            ratings = "Not available";
         }
     }
     

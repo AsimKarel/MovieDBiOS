@@ -16,19 +16,21 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var detailsLabel: UILabel!
+    @IBOutlet weak var loader: UIActivityIndicatorView!
     var id:Int64!;
     var movie:Movie!;
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loader.stopAnimating();
         getMovieDetails();
         // Do any additional setup after loading the view.
     }
     
     func setValues() {
-        dateLabel.text = movie.releaseDate;
+        dateLabel.text = "Release Date: \(movie.releaseDate!)";
         nameLabel.text = movie.title;
-        ratingLabel.text = movie.ratings.description;
+        ratingLabel.text = "Ratings: \(movie.ratings!)";
         detailsLabel.text = movie.plotSynopsis;
         if movie.posterPath == nil{
             self.thumbnailImage?.image = UIImage(named: "no_image.png")
@@ -52,15 +54,17 @@ class DetailsViewController: UIViewController {
     
     
     public func getMovieDetails(){
+        loader.startAnimating();
         var params:Parameters = Parameters();
         func getListSuccess(response:APIResponse){
+            loader.stopAnimating();
             movie = Movie(dictionary: (response.data as! NSDictionary));
             setValues()
         }
         func getListFailure(response:APIResponse){
-            
+            loader.stopAnimating();
         }
-        NetworkService.sharedInstance().getAPI(route: "\(APIConstants.MOVIE_DETAIL_API)\(id!)", parameters: params, success_callback: getListSuccess, failure_callback: getListFailure)
+        NetworkService.sharedInstance().getAPI(route: "\(APIConstants.MOVIE_DETAIL_API!)\(id!)", parameters: params, success_callback: getListSuccess, failure_callback: getListFailure)
     }
     
     
