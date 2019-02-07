@@ -14,6 +14,12 @@ class MovieCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.applyBorder()
+        self.applyShadow()
+    }
+    
     public func setMovie(movie:Movie){
         
         nameLabel.text = movie.title;

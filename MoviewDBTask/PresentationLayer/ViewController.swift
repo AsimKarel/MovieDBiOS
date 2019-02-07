@@ -162,7 +162,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         func getListFailure(response:APIResponse){
             loader.stopAnimating();
         }
-        MovieBL().getMovieList(route: "https://api.themoviedb.org/3/discover/movie", params: params, success_callback: getListSuccess, failure_callback: getListFailure)
+        MovieBL().getMovieList(route: APIConstants.MOVIE_LIST_API, params: params, success_callback: getListSuccess, failure_callback: getListFailure)
     }
     
     public func getSearchedMovies(query:String){
@@ -177,7 +177,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         func getListFailure(response:APIResponse){
             loader.stopAnimating();
         }
-        MovieBL().getMovieList(route: "https://api.themoviedb.org/3/search/movie", params: params, success_callback: getListSuccess, failure_callback: getListFailure)
+        MovieBL().getMovieList(route: APIConstants.MOVIE_SEARCH_API, params: params, success_callback: getListSuccess, failure_callback: getListFailure)
     }
     
 }

@@ -60,7 +60,7 @@ class DetailsViewController: UIViewController {
         func getListFailure(response:APIResponse){
             
         }
-        NetworkService.sharedInstance().getAPI(route: "https://api.themoviedb.org/3/movie/\(id!)", parameters: params, success_callback: getListSuccess, failure_callback: getListFailure)
+        NetworkService.sharedInstance().getAPI(route: "\(APIConstants.MOVIE_DETAIL_API)\(id!)", parameters: params, success_callback: getListSuccess, failure_callback: getListFailure)
     }
     
     
